@@ -1,0 +1,61 @@
+.cardItem {
+    display: grid;
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    grid-template-columns: repeat(auto-fit, minmax(max-content, 1fr));
+
+    justify-self: center;
+    height: 48rem;
+    width: 33rem;
+
+    @include respond(phone-bg) {   
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        }
+
+
+    &__card {
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        background-color: $color-bg-1;
+        padding: 1.8rem;
+        border-radius: 2%;
+
+
+        &__img {
+            width: 100%;
+            grid-row: 1 / 2;
+            grid-column: 1 / -1;
+            z-index: 1;  
+
+            &:hover {
+                transform: scale(1.1);
+                transition: transform 6s cubic-bezier(0.25, 0.45, 0.45, 0.95);
+              } 
+        }
+
+        &__title {
+            grid-column: 1 / 2;
+            font-size: 2rem;
+            text-align: start;
+            color: $color-primary-logo-1;
+            // font-family: $handwriting-font-1;
+            cursor: pointer;
+            @include respond(phone-bg) {
+                font-size: 1.5rem;
+                } 
+        }
+        &__content {
+            grid-column: 2 / 3;
+            font-size: 1.8rem;
+            justify-self: center;
+            color: $color-grey-light-2;
+            @include respond(phone-bg) {
+                font-size: 1.5rem;
+                } 
+        }
+
+    }
+
+}

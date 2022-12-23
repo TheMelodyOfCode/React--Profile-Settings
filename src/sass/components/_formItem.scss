@@ -1,0 +1,127 @@
+.formItem {
+    display: grid;
+    grid-column: 3 / 4;
+    grid-row: 2 / 3;
+    grid-template-columns: repeat(auto-fit, minmax(max-content, 1fr));
+
+    justify-self: center;
+    height: 48rem;
+    width: 33rem;
+
+    @include respond(phone-bg) {   
+        grid-column: 2 / 3;
+        grid-row: 3 / 4;
+        }
+
+    &__card {
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        background-color: $color-bg-1;
+        column-gap: 2rem;
+        padding: 1.8rem;
+        border-radius: 2%;
+
+
+        &__input {
+            grid-column: 1 / 2;
+            width: 20rem;
+            font-size: $default-font-size;
+            font-family: inherit;
+            color: $color-black;
+            padding: .5rem 1rem;
+            border-radius: $border-radius-small;
+            background-color: rgba($color-grey-light-1, .8);
+            border: none;
+            border-bottom: 3px solid transparent;
+            display: block;
+            transition: all .3s;
+            @include respond(phone-sm) {
+                padding: .4rem .9rem;
+                font-size: .8rem;
+                }
+    
+            &:focus {
+                outline: none;
+                box-shadow: $shadow-black-light;
+                border-bottom: 3px solid $color-green-1;
+            }
+    
+            &:focus:invalid {
+                border: 3px solid red;
+            }
+        
+            &::-webkit-input-placeholder {
+                
+                color: $color-grey-dark-3;
+            }
+        }
+        &__btn {
+            grid-column: 2 / 3;
+
+            background-color:  $color-secondary-dark;
+            color: $color-grey-dark-3;
+            text-transform: none;
+            padding: .4rem .4rem;
+            font-size: 1rem;
+
+            &,
+            &:link,
+            &:visited {
+                text-transform: uppercase;
+                text-decoration: none;
+                padding: .7rem .7rem;
+                display: inline-block;
+                border-radius: 10rem;
+            /* all properties are enabled to be animated
+            in realtion to the initial state  */
+                transition: all .2s;
+                position: relative;
+                font-size: $default-font-size;
+        
+                //Change for the <button> element
+                border: none;
+                cursor: pointer;
+            }
+            &:hover {
+                transform: translateY(-.3rem);
+                box-shadow: 0 1rem 2rem rgba($color-black, .2);
+                &:hover::after {
+                    transform: scaleX(1.4) scaleY(1.8);
+                    /* to fade out */
+                    opacity: 0;
+                }
+            }
+            &:active,
+            &:focus {
+                outline: none;
+                transform: translateY(-.1rem);
+                box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+            }
+            &::after {
+            /* to let the after sudo element appear on the page
+            we need to specify content & display even when it's empty  */
+                content: "";
+                display: inline-block;
+                height: 100%;
+                width: 100%;
+                border-radius: 10rem;
+                position: absolute;
+                top: 0;
+                left: 0;
+                z-index: -1;
+            /* all properties are enabled to be animated
+            in realtion to the initial state  */
+            transition: all .4s;
+            }
+            &:hover::after {
+                transform: scaleX(1.4) scaleY(1.8);
+                /* to fade out */
+                opacity: 0;
+            }   
+
+        }
+
+    }
+
+}

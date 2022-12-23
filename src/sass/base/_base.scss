@@ -1,0 +1,47 @@
+/* Browser reset 
+important to not forget the pseudo elements !!*/
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    /* by setting the box-sizing to inherit we can now
+    change the  BODY box-sizing poperty when ever we want and it will apply to all elements */
+    box-sizing: inherit;
+}
+
+html {
+
+/* root font-size set for rem. It defines what 1rem is.
+It's important to set a % value here since the user can change the font-settings in the browser
+100% is equal to 16px . - 16px is the default browser font-size
+1rem = 16px*/
+
+    font-size: 62.5%; /*  10px / 16px * 100  (16px = 1rem)  */  
+    
+}
+
+.container {
+    display: grid;
+    grid-template-columns: [full-start] minmax(4rem, 1fr) [center-start]repeat(2, [col-start] minmax(min-content, max-content)[col-end]) [center-end] minmax(4rem, 1fr) [full-end];
+    grid-template-rows: repeat(2, minmax(max-content, max-content)) minmax(4rem, 1fr) ;
+    justify-content: center;
+    justify-self: center;
+    column-gap: 2rem;
+
+    @include respond(phone-bg) {   
+        grid-template-columns: [full-start] minmax(4rem, 1fr) [center-start]repeat(1, [col-start] minmax(min-content, max-content)[col-end]) [center-end] minmax(4rem, 1fr) [full-end];
+        grid-template-rows: repeat(3, minmax(max-content, max-content)) minmax(4rem, 1fr);
+        row-gap: 3rem;
+        }
+}
+
+
+
+
+
+/* to set color to text-select on page */
+::selection {
+    background-color: $color-textSelect-1;
+    color: $color-black;
+}

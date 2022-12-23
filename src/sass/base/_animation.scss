@@ -1,0 +1,131 @@
+@keyframes leftToRight-1 {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+    80% {
+        transform: translateX(24rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0rem);
+    }
+}
+@keyframes moveInLeft-1 {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+    80% {
+        transform: translateX(1rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0rem);
+    }
+}
+
+@keyframes moveInLeft-2 {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight-1 {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0rem);
+    }
+}
+
+@keyframes moveInRight-2 {
+    0% {
+        opacity: 0;
+        transform: translateY(10rem);
+    }
+    80% {
+        transform: translateX(-9rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-10rem);
+    }
+}
+
+
+@keyframes moveInBottom-1 {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(0rem);
+    }
+}
+
+@keyframes moveInBottom-2 {
+    0% {
+        opacity: 0;
+        transform: translateY(10rem);
+    }
+    80% {
+        transform: translateY(-5rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(-10rem);
+    }
+}
+
+@keyframes moveInBottom-3 {
+    0% {
+        opacity: 0;
+        transform: translateY(50vh);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes changeColor {
+
+    0% {
+        background-image: linear-gradient(to right, $color-primary-logo-1, $color-red-1);
+        /* This will clip the background to exactely where the text is */
+        background-clip: text;
+        color: transparent;
+    }
+    40% {
+        background-image: linear-gradient(to right, $color-red-1, $color-primary-logo-1);
+        /* This will clip the background to exactely where the text is */
+        background-clip: text;
+        color: transparent;
+    }
+    80% {
+        background-image: linear-gradient(to right, $color-primary-logo-1, $color-red-1);
+        /* This will clip the background to exactely where the text is */
+        background-clip: text;
+        color: transparent;
+    }
+    100% {
+        // color: $color-white;
+        opacity: 1;
+        background-image: linear-gradient(to right, $color-red-1, $color-primary-logo-1);
+        /* This will clip the background to exactely where the text is */
+        background-clip: text;
+        color: transparent;
+    }
+
+}
