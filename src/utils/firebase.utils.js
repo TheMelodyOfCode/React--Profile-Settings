@@ -6,9 +6,9 @@ import { initializeApp } from "firebase/app";
 import { 
     getFirestore, 
     doc,
-    // getDoc, 
+    getDoc, 
     // setDoc,
-    // updateDoc,
+    updateDoc,
     collection,
     writeBatch,
     // query,
@@ -32,7 +32,34 @@ initializeApp(firebaseConfig);
 DB inside in our console on the website */
 export const db = getFirestore();
 
+/** NOTE:
+ * normally the uid is dynamic and we would get it from the firebase auth object when the user sign's up
+ * in this case it's just a simple exercise about user settings and therefor hardcoded*/
+const uid = 'uid01';
 
+export const userDocRef = doc(db, "userData", uid)
+// ### GET  single documents from DB !! ###
+// #############################
+       
+export const getSingleDocfromDB = async ( ) =>{
+    // const docRef = doc(db, 'userData', uid);
+    const docSnap = await getDoc(userDocRef);
+    if (docSnap.exists()) {
+      // console.log("Document data:", docSnap.data());
+      return docSnap.data()
+    } else {
+      // doc.data() will be undefined in this case
+      const error = {error: 'error', status: 'rejected', message: `No user with the uid: "${uid}"` }
+      return error
+    }
+}
+
+// ### UPDATE USER-PROFILE INFORMATION !! ### 
+// ##########################################
+
+export const UpdateUserDocinDB = async (profileInfo= {})=>{
+    await updateDoc(userDocRef, profileInfo);
+}
 
 
 // ### UPLOAD FILES TO DB !! ###
