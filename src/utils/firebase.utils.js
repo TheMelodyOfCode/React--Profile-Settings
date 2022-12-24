@@ -1,7 +1,5 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
 import { 
     getFirestore, 
@@ -36,8 +34,9 @@ export const db = getFirestore();
  * normally the uid is dynamic and we would get it from the firebase auth object when the user sign's up
  * in this case it's just a simple exercise about user settings and therefor hardcoded*/
 const uid = 'uid01';
+const userDocRef = doc(db, "userData", uid)
 
-export const userDocRef = doc(db, "userData", uid)
+
 // ### GET  single documents from DB !! ###
 // #############################
        
