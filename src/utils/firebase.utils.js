@@ -48,8 +48,8 @@ export const getSingleDocfromDB = async ( ) =>{
       return docSnap.data()
     } else {
       // doc.data() will be undefined in this case
-      const error = {error: 'error', status: 'rejected', message: `No user with the uid: "${uid}"` }
-      return error
+      return  {error: 'error', status: 'rejected', message: `No user with the uid: "${uid}"` }
+      
     }
 }
 

@@ -8,8 +8,10 @@ const userData = [
     birthDate: '12.12.1299',
     email: "john@doe.com",
     phone: '0190666666',
-    imageUrl: "img/03.png",
-
+    fallbackImg: "img/uploadProfilePic.jpg",
+    fileName: "01.png" ,
+    imgLocation: '',
+    profileUpdated: '',
   },
  
 ]

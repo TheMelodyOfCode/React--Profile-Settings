@@ -2,13 +2,13 @@
 ### REACT & Firebase, Localstorage
 
 #### Fetching and Updating data 
-> This is a simple project about updating updating Userinformation fetching data from firebase</br>
+> This is a simple project about localstorage, fetching and updating data from firebase</br>
 > The exercise in this project was:</br>
 >> Fetch Data</br>
 >> Update data </br>
 >> Update profile pic</br>
->> Use localstorage </br>
->> Store the State </br>
+>> Use localstorage</br>
+>> Store the State</br>
 
 #### Firebase
 > In the Utils Folder, you will find all files related to Firebase</br>
