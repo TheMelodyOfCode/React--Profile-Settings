@@ -3,7 +3,7 @@
 
 #### Fetching and Updating data 
 > This is a simple project about fetching and updating data from firebase</br>
-> Also setting and getting Data from localStorage</br>
+> Also setting and getting data from localStorage</br>
 > The exercise in this project was:</br>
 >> Fetch Data</br>
 >> store data in localStorage</br>
