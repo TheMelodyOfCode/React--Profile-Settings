@@ -1,19 +1,16 @@
 import * as React from 'react'
 
 import { UpdateUserDocinDB } from '../../utils/firebase.utils';
+import { useLocalStorageState } from '../../utils/syncLocalStorage';
 
-/** instead of using 5 different useSate values for the 5 inputs
- *  we will use an object. This Object will be the default for useState
- *  and the value for formFields (see below) */
 const defaultFormFields = {
-    // imageUrl: '',
     userFirstName: '',
     userLastName: '',
     userBirthDate: '',
     userEmail: '',
     userPhone: '',
 }
-const initialInfo = 'check connection';
+const initialInfo = 'check connection or refresh';
 
 const defaultFile = {
     fileName: '',
@@ -32,31 +29,21 @@ const dateAndTime = date.toLocaleString("de-DE", {
 }); 
 const profileUpdated = dateAndTime;
 
-const CardItems =( )=>{
+const CardItems =()=>{
 
+  const [formFields, setFormFields] = React.useState(defaultFormFields);
+  const {firstName, lastName, birthDate, email, phone } = formFields;
+  const [file, setFile] = React.useState(defaultFile);
+  const {fileName, imgLocation} = file;
+  const inputRef = React.useRef();
 
-    const [file, setFile] = React.useState(defaultFile);
-    const {fileName, imgLocation} = file;
-
-    const inputRef = React.useRef();
-
-    const [formFields, setFormFields] = React.useState(defaultFormFields);
-    // const {userFirstName, userLastName, userBirthDate, userEmail, userPhone }  = formFields;
-    const { firstName, lastName, birthDate, email, phone } = formFields;
-
-    /* State for local  */
-    const [localImage, setLocalImage] = React.useState(
-      () =>  window.localStorage.getItem('localImage') || initialInfo )
-    const [localFirstName, setLocalFirstName] = React.useState(
-      () =>  window.localStorage.getItem('firstName') || initialInfo )
-    const [localLastName, setLocalLastName] = React.useState(
-      () =>  window.localStorage.getItem('lastName') || initialInfo, )
-    const [localEmail, setLocalEmail] = React.useState(
-      () =>  window.localStorage.getItem('email') || initialInfo, )
-    const [localBirthDate, setLocalBirthDate] = React.useState(
-      () =>  window.localStorage.getItem('birthDate') || initialInfo, )
-    const [localPhone, setLocalPhone] = React.useState(
-      () =>  window.localStorage.getItem('phone') || initialInfo, )
+  /* State for local  */
+  const [localImage, setLocalImage] = useLocalStorageState('imgLocation', initialInfo )
+  const [localFirstName, setLocalFirstName] = useLocalStorageState("firstName", initialInfo )
+  const [localLastName, setLocalLastName] = useLocalStorageState('lastName', initialInfo )
+  const [localBirthDate, setLocalBirthDate] = useLocalStorageState('birthDate', initialInfo )
+  const [localEmail, setLocalEmail] = useLocalStorageState('email', initialInfo )
+  const [localPhone, setLocalPhone] = useLocalStorageState('phone', initialInfo )
 
 
     const updateProfilePic = async (event)=>{
@@ -67,8 +54,7 @@ const CardItems =( )=>{
                 imgLocation: imgLocation,
                 profileUpdated: profileUpdated,
               }).then(
-                window.localStorage.setItem('imgLocation',  imgLocation,),
-                setLocalImage(imgLocation)
+                setLocalImage(imgLocation),
               )
             .catch((error) => {
                 console.error('Update encountered an error', error)
@@ -85,8 +71,7 @@ const CardItems =( )=>{
                 firstName: firstName,
                 profileUpdated: profileUpdated,
               }).then(
-                window.localStorage.setItem('firstName', firstName,),
-                setLocalFirstName(firstName)
+                setLocalFirstName(firstName),
               )
             .catch((error) => {
                 console.error('Update encountered an error', error)
@@ -103,8 +88,7 @@ const CardItems =( )=>{
                 lastName: lastName,
                 profileUpdated: profileUpdated,
               }).then(
-                window.localStorage.setItem('lastName',  lastName,),
-                setLocalLastName(lastName)
+                setLocalLastName(lastName),
               )
             .catch((error) => {
                 console.error('Update encountered an error', error)
@@ -121,8 +105,7 @@ const CardItems =( )=>{
                 birthDate: birthDate,
                 profileUpdated: profileUpdated,
               }).then(
-                window.localStorage.setItem('birthDate',  birthDate,),
-                setLocalBirthDate(birthDate)
+                setLocalBirthDate(birthDate),
               )
             .catch((error) => {
                 console.error('Update encountered an error', error)
@@ -139,8 +122,7 @@ const CardItems =( )=>{
                 email: email,
                 profileUpdated: profileUpdated,
               }).then(
-                window.localStorage.setItem('email',  email,),
-                setLocalEmail(email)
+                setLocalEmail(email),
               )
             .catch((error) => {
                 console.error('Update encountered an error', error)
@@ -157,8 +139,7 @@ const CardItems =( )=>{
                 phone: phone,
                 profileUpdated: profileUpdated,
               }).then(
-                window.localStorage.setItem('phone',  phone,),
-                setLocalPhone(phone)
+                setLocalPhone(phone),
               )
             .catch((error) => {
                 console.error('Update encountered an error', error)
@@ -199,16 +180,13 @@ const CardItems =( )=>{
         // redirect the click event onto the hidden input element
         inputRef.current?.click();
       };
-
-        // replace image function
-        const replaceImage = (error) => {
-        // console.log(error)
-        //replacement of broken Image
-        error.target.src = "img/uploadProfilePic.jpg"
-        }
+    // replace image function
+    const replaceImage = (error) => {
+      //replacement of broken Image
+      error.target.src = "img/uploadProfilePic.jpg"
+      }
 
     return (
-
         <>
           <section className="formItem">
             <form className="formItem__card" onSubmit={updateProfilePic} >
@@ -233,7 +211,6 @@ const CardItems =( )=>{
                     <input 
                     type="text" 
                     className="formItem__card__input"
-                    // placeholder={firstName}
                     onChange={handleChange} 
                     placeholder={localFirstName}
                     value={firstName} 
@@ -245,7 +222,6 @@ const CardItems =( )=>{
                     <input 
                     type="text" 
                     className="formItem__card__input"
-                    // placeholder={lastName}
                     onChange={handleChange} 
                     placeholder={localLastName}
                     value={lastName} 
@@ -257,7 +233,6 @@ const CardItems =( )=>{
                     <input 
                     type="date" 
                     className="formItem__card__input"
-                    // placeholder={birthDate}
                     onChange={handleChange}
                     value={birthDate} 
                     name="birthDate" />
@@ -267,7 +242,6 @@ const CardItems =( )=>{
                     <input 
                     type="email" 
                     className="formItem__card__input"
-                    // placeholder={email}
                     onChange={handleChange} 
                     placeholder={localEmail} 
                     value={email} 
@@ -278,7 +252,6 @@ const CardItems =( )=>{
                     <input 
                     type="number" 
                     className="formItem__card__input"
-                    // placeholder={phone}
                     onChange={handleChange} 
                     placeholder={localPhone} 
                     value={phone} 
@@ -289,22 +262,20 @@ const CardItems =( )=>{
 
         <section className="cardItem">
             <div className="cardItem__card">
-                <img className="cardItem__card__img" onError={replaceImage} src={localImage} alt="blogItem Card Js" />
-                {/* <img className="cardItem__card__img" src="img/uploadProfilePic.jpg" alt="blogItem Card Js" /> */}
-                    <h5 className="cardItem__card__title" >Firstname: </h5>
-                    <h5 className="cardItem__card__content" > {localFirstName}</h5>
-                    <h5 className="cardItem__card__title" >Lastname: </h5>
-                    <h5 className="cardItem__card__content" > {localLastName}</h5>
-                    <h5 className="cardItem__card__title" >Birth Date: </h5>
-                    <h5 className="cardItem__card__content" > {localBirthDate}</h5>
-                    <h5 className="cardItem__card__title" >Email:</h5>
-                    <h5 className="cardItem__card__content" >{localEmail}</h5>
-                    <h5 className="cardItem__card__title" >Phone:</h5>
-                    <h5 className="cardItem__card__content" >{localPhone}</h5>
+                <img className="cardItem__card__img" onError={replaceImage} src={localImage} alt="Card-Item" />
+                <h5 className="cardItem__card__title" >Firstname: </h5>
+                <h5 className="cardItem__card__content" > {localFirstName}</h5>
+                <h5 className="cardItem__card__title" >Lastname: </h5>
+                <h5 className="cardItem__card__content" > {localLastName}</h5>
+                <h5 className="cardItem__card__title" >Birth Date: </h5>
+                <h5 className="cardItem__card__content" > {localBirthDate}</h5>
+                <h5 className="cardItem__card__title" >Email:</h5>
+                <h5 className="cardItem__card__content" >{localEmail}</h5>
+                <h5 className="cardItem__card__title" >Phone:</h5>
+                <h5 className="cardItem__card__content" >{localPhone}</h5>
             </div>
         </section>
         </>
-
     )
 
 }

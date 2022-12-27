@@ -41,15 +41,13 @@ const userDocRef = doc(db, "userData", uid)
 // #############################
        
 export const getSingleDocfromDB = async ( ) =>{
-    // const docRef = doc(db, 'userData', uid);
+
     const docSnap = await getDoc(userDocRef);
     if (docSnap.exists()) {
-      // console.log("Document data:", docSnap.data());
       return docSnap.data()
     } else {
       // doc.data() will be undefined in this case
-      return  {error: 'error', status: 'rejected', message: `No user with the uid: "${uid}"` }
-      
+      return  {error: 'error',  message: `No user with the uid: "${uid}"` }
     }
 }
 
