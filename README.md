@@ -4,7 +4,7 @@
 #### Fetching and Updating data 
 > This is a simple project about fetching and updating data from firebase</br>
 > Also setting and getting data from localStorage</br>
-> The exercise in this project was:</br>
+> The exercise in this project was about:</br>
 >> Fetch Data</br>
 >> store data in localStorage</br>
 >> flexible localStorage Hook</br>
