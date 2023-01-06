@@ -11,14 +11,11 @@ important to not forget the pseudo elements !!*/
 }
 
 html {
-
 /* root font-size set for rem. It defines what 1rem is.
 It's important to set a % value here since the user can change the font-settings in the browser
 100% is equal to 16px . - 16px is the default browser font-size
 1rem = 16px*/
-
-    font-size: 62.5%; /*  10px / 16px * 100  (16px = 1rem)  */  
-    
+    font-size: 62.5%; /*  10px / 16px * 100  (16px = 1rem)  */ 
 }
 
 .container {
@@ -35,10 +32,6 @@ It's important to set a % value here since the user can change the font-settings
         row-gap: 3rem;
         }
 }
-
-
-
-
 
 /* to set color to text-select on page */
 ::selection {

@@ -3,7 +3,6 @@
     grid-column: 2 / 3;
     grid-row: 2 / 3;
     grid-template-columns: repeat(auto-fit, minmax(max-content, 1fr));
-
     justify-self: center;
     height: 48rem;
     width: 33rem;
@@ -13,7 +12,6 @@
         grid-row: 2 / 3;
         }
 
-
     &__card {
 
         display: grid;
@@ -21,7 +19,6 @@
         background-color: $color-bg-1;
         padding: 1.8rem;
         border-radius: 2%;
-
 
         &__img {
             width: 30rem;
